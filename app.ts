@@ -1,5 +1,6 @@
 import express from 'express'
 import playersRouter from './src/routes/playersRoute'
+import cors from 'cors'
 
 
 function createApp() {
@@ -8,6 +9,8 @@ function createApp() {
     app.use(express.json())
 
     app.use('/api', playersRouter)
+
+    app.use(cors())
 
     return app
 }
