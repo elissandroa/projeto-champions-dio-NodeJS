@@ -1,13 +1,16 @@
 import { Router } from "express";
-import * as controller from "../controllers/playersController";
+import * as playersController from "../controllers/playersController";
+import * as clubsController from '../controllers/clubsController';
 
 const router = Router()
 
 
 
-router.get('/players', controller.getPlayer)
-router.get('/players/:id', controller.getPlayerById)
-router.post('/players', controller.postPlayer)
-router.delete('/players/:id', controller.deletePlayer)
-router.patch('/players/:id', controller.updatePlayer)
+router.get('/players', playersController.getPlayer)
+router.get('/players/:id', playersController.getPlayerById)
+router.post('/players', playersController.postPlayer)
+router.delete('/players/:id', playersController.deletePlayer)
+router.patch('/players/:id', playersController.updatePlayer)
+
+router.get('/clubs', clubsController.getClubs)
 export default router
