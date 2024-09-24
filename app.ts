@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPlayer } from './src/controllers/playersController'
+import playersRouter from './src/routes/playersRoute'
 
 
 function createApp() {
@@ -7,7 +7,7 @@ function createApp() {
 
     app.use(express.json())
 
-    app.use('/api', getPlayer)
+    app.use('/api', playersRouter)
 
     return app
 }
