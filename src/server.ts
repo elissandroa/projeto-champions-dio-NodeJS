@@ -1,19 +1,8 @@
-import express, {Request, Response, json} from 'express'
-
-
-const app = express()
-
-app.use(json())
-
+import createApp from "../app"
 
 const port = process.env.PORT
 
-
-app.get('/', (req: Request, res: Response) => {
-    res.status(200).json({ player: "Lionel Messi" })
-})
-
-
+const app = createApp()
 
 
 app.listen(port, () => {
