@@ -1,8 +1,9 @@
-import * as playerRepository from "../repositories/playerRepository"
+import { PlayerModel } from "../models/playersModel"
+import * as repository from "../repositories/playerRepository"
 import * as HttpResponse from "../utils/httpHelper"
 
 export const getPlayerData = async () => {
-   const data = await playerRepository.findAllPlayers()
+   const data = await repository.findAllPlayers()
    let response = null
    if (data) {
       response = await HttpResponse.ok(data)
@@ -15,7 +16,7 @@ export const getPlayerData = async () => {
 
 
 export const getPlayerByIdService = async (id: number) => {
-   const data = await playerRepository.findPlayerById(id)
+   const data = await repository.findPlayerById(id)
    let response = null
    if (data) {
       response = await HttpResponse.ok(data)
@@ -24,3 +25,14 @@ export const getPlayerByIdService = async (id: number) => {
    }
    return response
 }
+
+export const createPlayerService = async (player: PlayerModel) => {
+   if (Object.keys(player).length !== 0) {
+      await repository.insertPlayer(player)
+      return HttpResponse.Created(player)
+   } else {
+      return HttpResponse.BadRequest()
+   }
+}
+
+
