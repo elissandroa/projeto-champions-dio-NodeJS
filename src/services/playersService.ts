@@ -37,14 +37,24 @@ export const createPlayerService = async (player: PlayerModel) => {
 }
 
 
-export const deletePlayerService = async(id:number) => {
-   await repository.deleteOnePlayer(id)
-   return HttpResponse.ok({message: "Deleted"})
+export const deletePlayerService = async (id: number) => {
+   const player = await repository.findPlayerById(id)
+   if(player){
+      await repository.deleteOnePlayer(id)
+      return HttpResponse.ok({ message: "Deleted" })
+   } else {
+      return HttpResponse.BadRequest()
+   }
 }
 
 
-export const updatePlayerService = async(id:number, statistics:StatisticsModel) => {
-   
+export const updatePlayerService = async (id: number, statistics: StatisticsModel) => {
+   const data = await repository.findAndModifyPlayer(id, statistics)
+   if (!data) {
+      return HttpResponse.BadRequest()
+   } else {
+      return HttpResponse.ok(data)
+   }
 }
 
 
