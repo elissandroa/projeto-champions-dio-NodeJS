@@ -9,4 +9,5 @@ router.get('/players', controller.getPlayer)
 router.get('/players/:id', controller.getPlayerById)
 router.post('/players', controller.postPlayer)
 router.delete('/players/:id', controller.deletePlayer)
+router.patch('/players/:id', controller.updatePlayer)
 export default router

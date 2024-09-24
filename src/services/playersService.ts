@@ -1,4 +1,5 @@
 import { PlayerModel } from "../models/playersModel"
+import { StatisticsModel } from "../models/statiticsModel"
 import * as repository from "../repositories/playerRepository"
 import * as HttpResponse from "../utils/httpHelper"
 
@@ -36,9 +37,14 @@ export const createPlayerService = async (player: PlayerModel) => {
 }
 
 
-export const deletePlayerServie = async(id:number) => {
+export const deletePlayerService = async(id:number) => {
    await repository.deleteOnePlayer(id)
    return HttpResponse.ok({message: "Deleted"})
+}
+
+
+export const updatePlayerService = async(id:number, statistics:StatisticsModel) => {
+   
 }
 
 
