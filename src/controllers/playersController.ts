@@ -24,3 +24,8 @@ export const postPlayer = async (req: Request, res: Response) => {
 
 }
 
+export const deletePlayer = async (req: Request, res: Response) => {
+    const id = parseInt(req.params.id)
+    const HttpResponse = await service.deletePlayerServie(id)
+    res.status(HttpResponse.statusCode).json(HttpResponse.body)
+}
